@@ -1,3 +1,4 @@
+from msilib.schema import ProgId
 from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
 from django.contrib import auth
@@ -67,3 +68,34 @@ def LS(request):
 
 def profile(request):
     return HttpResponse("<h1>profile</h1>")
+    context={
+        'fname':request.user.first_name,
+        'email':request.user.email,
+        'lname':request.user.last_name,
+        'mobile':request.user.profile.mobile,
+        'college':request.user.profile.college,
+
+    }
+    return render(request,'users/profile.html',context)
+
+def updateProfile(request):
+    profile = Profile.objects.get(user = request.user)
+    if request.method == 'POST':
+        firstname = request.POST['fname']
+        lastname = request.POST['lname']
+        email = request.POST['email']
+        password  = request.POST['password']
+        college = request.POST['college']
+        mobile_number = request.POST['mobile']
+        # user = User.objects.create_user(username=email, email=email, first_name = firstname, password=password)
+        request.user.first_name=firstname
+        request.user.last_name=lastname
+        profile.collge = college
+        profile.mobile = mobile_number
+        profile.save()
+        request.user.save()
+        return redirect('profile')
+
+
+    context={}
+    return render(request,'users/update_profile.html',context)
