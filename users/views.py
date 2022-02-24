@@ -16,6 +16,7 @@ def login(request):
         # print(request.POST['email']," ",request.POST['password'])
         email = request.POST['email']
         password = request.POST['password']
+        
         user = auth.authenticate( username = email, password=password)
         print(user)
         if user is not None:
@@ -43,8 +44,14 @@ def signup(request):
         college = request.POST['college']
         mobile_number = request.POST['mobile']
         user = User.objects.create_user(username=email, email=email, first_name = firstname, password=password)
+        isClub = request.POST.get('isClub','0')
 
-        newprofile = Profile.objects.create(user = user,college=college,mobile = mobile_number)
+        if isClub == '1':
+            isClub = True
+        else:
+            isClub = False
+
+        newprofile = Profile.objects.create(user = user,college=college,mobile = mobile_number, is_club_admin=isClub)
         
         user.save()
         newprofile.save()
@@ -58,5 +65,5 @@ def logout(request):
 def LS(request):
     return render(request,'users/LS.html')
 
-# def profile(request):
-#     return HttpResponse("<h1>profile</h1>")
+def profile(request):
+    return HttpResponse("<h1>profile</h1>")
