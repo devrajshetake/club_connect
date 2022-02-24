@@ -8,12 +8,18 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def home(request):
-    return HttpResponse("<h1>This is Home<h2>")
+    context = {}
+    return render(request,'users/home.html',context)
 
 def login(request):
     if request.method == 'POST':
-        user = auth.authenticate( username =request.POST['email'], password=request.POST['password1'])
+        # print(request.POST['email']," ",request.POST['password'])
+        email = request.POST['email']
+        password = request.POST['password']
+        user = auth.authenticate( username = email, password=password)
+        print(user)
         if user is not None:
+            # print(user.email)
             auth.login(request,user)
             prof = Profile.objects.get(user= user)
             if prof.is_club_admin:
@@ -29,13 +35,21 @@ def login(request):
 
 
 def signup(request):
-    # firstname = request.POST['first-name']
-    # lastname = request.POST['last-name']
-    # email = request.POST['email']
-    # password  = request.POST['password']
+    if request.method == 'POST':
+        firstname = request.POST['fname']
+        lastname = request.POST['lname']
+        email = request.POST['email']
+        password  = request.POST['password']
+        college = request.POST['college']
+        mobile_number = request.POST['mobile']
+        user = User.objects.create_user(username=email, email=email, first_name = firstname, password=password)
 
+        newprofile = Profile.objects.create(user = user,college=college,mobile = mobile_number)
+        
+        user.save()
+        newprofile.save()
 
-    return render(request,'users/signup.html')
+    return render(request,'users/LS.html')
 
 def logout(request):
     auth.logout(request)
@@ -43,3 +57,6 @@ def logout(request):
 
 def LS(request):
     return render(request,'users/LS.html')
+
+# def profile(request):
+#     return HttpResponse("<h1>profile</h1>")
