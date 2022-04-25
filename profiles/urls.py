@@ -1,5 +1,6 @@
 from django.urls import path
 from posts.views import *
+from posts.views import register
 from .views import ( 
     my_profile_view, 
     ProfileDetailView,
@@ -11,4 +12,5 @@ urlpatterns = [
     path('myprofile/', my_profile_view, name='my-profile-view'),
     path('<slug>/', ProfileDetailView.as_view(), name='profile-detail-view'),
     path('login/', login, name='login-view'),
+    path('register/', register, name='register-view'),
 ]

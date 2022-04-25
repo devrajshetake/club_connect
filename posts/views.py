@@ -183,5 +183,9 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
+
+def register(request):
+    return render(request, "posts/register.html")
+
 def web_team(request):
     return render(request, 'posts/webteam.html')

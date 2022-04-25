@@ -21,8 +21,8 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-  <title>Web Weaver</title>
-  <link rel="shortcut icon" type="image/png" href={% static 'pisb-favicon.png' %}>
+  <title>Club Connect</title>
+  <!-- <link rel="shortcut icon" type="image/png" href={% static 'pisb-favicon.png' %}> -->
   <script>
     window.console = window.console || function (t) {};
   </script>
@@ -60,7 +60,7 @@
       <a href="{% url 'logout' %}" data-toggle="modal" data-target="#exampleModal">{{request.user.username}}</a>
       {% else %}
       <a href="{% url 'login-view' %}">LOGIN</a>
-      <a href="https://credenz.in/">REGISTER</a>
+      <a href="{% url 'register-view' %}">REGISTER</a>
       {% endif %}
     </div>
   </div>
@@ -134,16 +134,16 @@
   <div class="webweaver">
 
     <div class="headingname driveInTop">
-      <p class="titlename">WEB WEAVER</p>
-      <p>Bring out the developer in you with Web Weaver 22 ! <br>
-        Show case your skills as a web developer with this website creating contest .
+      <p class="titlename">CLUB CONNECT</p>
+      <p>Stay updated with club connect! <br>
+        Never miss on the exciting contests, arranged by the clubs all around India.
         <br>
-        Be a creative genius, build an aesthetic site on the given theme. </p>
+        Participate and get a chance to win exciting prizes!!</p>
       <div class="links ">
         <button type="button" class="glow-on-hover" data-toggle="modal"
-          data-target="#introduction">INTRODUCTION</button>
+          data-target="#introduction1">For Clubs</button>
         <button type="button" class="glow-on-hover" data-toggle="modal"
-          data-target="#instructions">INSTRUCTIONS</button>
+          data-target="#instructions2">For Students</button>
 
         <!-- Modal -->
         <div class="modal fade" id="introduction" tabindex="-1" role="dialog" aria-labelledby="introduction"
@@ -213,7 +213,7 @@
       </div>
     </div>
     <div class="svgs">
-      <img class="cssanimation hu__hu__" src={% static 'Website Creator-amico.svg' %} alt="">
+      <img class="cssanimation hu__hu__" src={% static 'Online-amico.svg' %} alt="">
     </div>
 
   </div>
@@ -225,7 +225,7 @@
       © PICT IEEE Student Branch
     </div> -->
     <div class="middleieee">
-      Web Weaver | Made with ❤️ by <a href="{% url 'web_team' %}" style="color: #2691D9;">PISB Web Team</a>
+      Club Connect | PBL Project
     </div>
     <!-- <div class="lastieee">
       <div class="social-links">
