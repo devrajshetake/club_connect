@@ -49,6 +49,7 @@ def post_create(request):
         link = data['link']
         description = data['description']
         image = dataImage['picture']
+        date = data['date']
         p_form = Post(title=title,content=description,link=link,image=image,author=profile)
         p_form.save()
         p_form = PostModelForm()

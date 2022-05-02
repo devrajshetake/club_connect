@@ -11,6 +11,7 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
+    date = models.DateField(null=True)
 
     def __str__(self):
         return str(self.content[:20])
